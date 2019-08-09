@@ -9,6 +9,16 @@ int main(int argc, char *argv[]) {
 ```
 
 
+### 程序计时
+```c
+#include <time.h>
+
+start_time = clock();
+// your program here
+end_time = clock();
+printf("This program cost %fs.\n", (end_time - start_time) / CLOCKS_PER_SEC);
+```
+
 ### 使用随机数
 ```c
 #include <time.h>
@@ -17,6 +27,17 @@ int main(int argc, char *argv[]) {
 // 获得 [floor, ceil] 之间的随机数
 srand((unsigned)time(NULL));
 int random_value = rand() / (ceil - floor) + floor;
+```
+
+### 结构体指定初始化
+```c
+static struct usb_driver usb_storage_driver = {
+    .owner = THIS_MODULE,
+    .name = "usb-storage",
+    .probe = storage_probe,
+    .disconnect = storage_disconnect,
+    .id_table = storage_usb_ids,
+};
 ```
 
 ### 字符串分割
@@ -43,12 +64,31 @@ sample
 string
 ```
 
-### 程序计时
+### C语言的面向对象
 ```c
-#include <time.h>
+// C语言的面向对象是使用函数指针实现的，就是在结构体中设置函数指针作为其成员。
+typedef struct list {
+    struct list *_this;
+    void (*insert)(void *node);
+    void (*drop)(void *node);
+    void (*clear)(void);
+    void (*get)(int index);
+} List;
 
-start_time = clock();
-// your program here
-end_time = clock();
-printf("This program cost %fs.\n", (end_time - start_time) / CLOCKS_PER_SEC);
+List *list = NULL; // 在下面函数的实现中需要使用list变量
+void insert(void *node);
+void drop(void *node);
+void clear(void);
+void *get(int index);
+
+// 指定一个构造函数
+List *ListConstruction() {
+    list = (List*)malloc(sizeof(List));
+    list->insert = insert;
+    list->drop = drop;
+    list->clear = clear;
+    list->get = get;
+    list->_this = list;
+    return (List*)list;
+}
 ```
