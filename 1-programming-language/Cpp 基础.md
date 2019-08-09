@@ -126,8 +126,65 @@
 
 ## Part II 标准库
 
-- 继承自C的标准库：cctype、cmath、ctime、cstdlib
+- 继承自C的标准库，在C头文件名称加一个字母c。
+
+### iostream\fstream\sstream
+- 标准的输入输出对象 `cin`, `cout`，运算符 `<<`, `>>`.
+- 文件流
+  ```cpp
+  fstream fs;
+  fs.open(filepath, fstream::in); // in, out, app, ate, trunc, binary.
+  // app指在文件末尾写入，out则会覆盖原有内容
+  fs.is_open();
+  fs.close();
+  ```
+- 控制输出格式的头文件为`iomanip`，总体来看并不好用。
+
+### 容器
+顺序容器
+- vector 随机访问很快，在尾部插入或删除元素很慢。
+- deque 随机访问很快，在头尾插入或删除很快。
+- list 只支持双向顺序访问，在任何位置插入或删除都很快，链表。
+- forward_list 单项链表。
+- array 固定大小，不能添加或删除元素。
+- string 与vector相似。string 的特殊操作：
+  - str.substr(pos, n)
+  - str.append(other)
+  - str.replace(range, other)
+  - str.find(ele), str.rfind(ele)
+  - to_string(val)
+  - stoi(str, p, b), p为首个非数字的字符下标，b为进制
+  - stof(str, p), stod(str, p), stold(str, p)
 
 
+关联容器
+- set
+- map
+- multiset
+- multimap
+- unordered_set, unordered_map, unordered_multiset, unordered_multimap.
 
+以上容器的操作：
+```cpp
+// 迭代器
+c.begin(), c.end(), c.cbegin(), c.cend()
+c.rbegin(), c.rend(), c.crbegin(), c.crend() // except forward_list
+// 大小
+c.size(), c.max_size(), c.empty() // forward_list do not have size()
+c.resize(num), c.resize(num, value) // 顺序容器，除了array
+vector.capacity() // 还可保存多少元素
+vector.reserve(num) // 分配num个元素的空间
+// 添加删除元素
+c.insert(iter, value), c.insert(iter, num, value) // except array
+c.emplace(iter, value...) // except array
+c.erase(iter), c.erase(iter1, iter2), c.clear() // except array
+c1.swap(c2)
+c.push_back(ele), c.pop_back() // vector, deque, list
+c.push_front(ele), c.pop_front() // deque, list, forward_list
 
+```
+
+容器适配器
+- stack: s.push(item), s.pop(), s.top() 返回栈顶元素但不弹出
+- queue: q.push(item), q.pop(), q.front(), q.back()
+- priority_queue
