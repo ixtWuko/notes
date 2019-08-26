@@ -21,12 +21,12 @@
 
 
 ### 字符串与向量
-- 不推荐使用C风格字符串，而是使用 string 类。
+- 不推荐使用C风格字符串。
 - string 对象上的操作
   ```cpp
   // 使用 >> str 读取时，会自动忽略开头的空白，在下一次遇到空白时结束。如果需要读取一整行，使用getline
   while (cin >> word) {} // 读取未知数量的string对象
-  while (getline(cin, line)) {} // 读取位置数量的line
+  while (getline(cin, line)) {} // 读取未知数量的line
 
   str.empty();
   str.size(); // 返回 string::size_type
@@ -127,6 +127,7 @@
 ## Part II 标准库
 
 - 继承自C的标准库，在C头文件名称加一个字母c。
+- 标准库内容很多，根据使用需要补充。
 
 ### iostream\fstream\sstream
 - 标准的输入输出对象 `cin`, `cout`，运算符 `<<`, `>>`.
@@ -148,14 +149,15 @@
 - forward_list 单项链表。
 - array 固定大小，不能添加或删除元素。
 - string 与vector相似。string 的特殊操作：
-  - str.substr(pos, n)
-  - str.append(other)
-  - str.replace(range, other)
-  - str.find(ele), str.rfind(ele)
-  - to_string(val)
-  - stoi(str, p, b), p为首个非数字的字符下标，b为进制
-  - stof(str, p), stod(str, p), stold(str, p)
-
+  ```cpp
+  str.substr(pos, n)
+  str.append(other)
+  str.replace(range, other)
+  str.find(ele), str.rfind(ele)
+  to_string(val)
+  stoi(str, p, b), p为首个非数字的字符下标，b为进制
+  stof(str, p), stod(str, p), stold(str, p)
+  ```
 
 关联容器
 - set
@@ -165,26 +167,31 @@
 - unordered_set, unordered_map, unordered_multiset, unordered_multimap.
 
 以上容器的操作：
-```cpp
-// 迭代器
-c.begin(), c.end(), c.cbegin(), c.cend()
-c.rbegin(), c.rend(), c.crbegin(), c.crend() // except forward_list
-// 大小
-c.size(), c.max_size(), c.empty() // forward_list do not have size()
-c.resize(num), c.resize(num, value) // 顺序容器，除了array
-vector.capacity() // 还可保存多少元素
-vector.reserve(num) // 分配num个元素的空间
-// 添加删除元素
-c.insert(iter, value), c.insert(iter, num, value) // except array
-c.emplace(iter, value...) // except array
-c.erase(iter), c.erase(iter1, iter2), c.clear() // except array
-c1.swap(c2)
-c.push_back(ele), c.pop_back() // vector, deque, list
-c.push_front(ele), c.pop_front() // deque, list, forward_list
-
-```
+  ```cpp
+  // 迭代器
+  c.begin(), c.end(), c.cbegin(), c.cend()
+  c.rbegin(), c.rend(), c.crbegin(), c.crend() // except forward_list
+  // 大小
+  c.size(), c.max_size(), c.empty() // forward_list do not have size()
+  c.resize(num), c.resize(num, value) // 顺序容器，除了array
+  vector.capacity() // 还可保存多少元素
+  vector.reserve(num) // 分配num个元素的空间
+  // 添加删除元素
+  c.insert(iter, value), c.insert(iter, num, value) // except array
+  c.emplace(iter, value...) // except array
+  c.erase(iter), c.erase(iter1, iter2), c.clear() // except array
+  c1.swap(c2)
+  c.push_back(ele), c.pop_back() // vector, deque, list
+  c.push_front(ele), c.pop_front() // deque, list, forward_list
+  ```
 
 容器适配器
-- stack: s.push(item), s.pop(), s.top() 返回栈顶元素但不弹出
-- queue: q.push(item), q.pop(), q.front(), q.back()
-- priority_queue
+  ```cpp
+  stack: s.push(item), s.pop(), s.top() // 返回栈顶元素但不弹出
+  queue: q.push(item), q.pop(), q.front(), q.back()
+  priority_queue
+  ```
+
+### 泛型算法
+- 对序列的泛型算法在头文件 algorithm 中，包含搜索、排序、填充、修改、比较、划分等操作。
+- 对序列的数值的算法在头文件 numeric 中，包含求和、公约数、公倍数等。

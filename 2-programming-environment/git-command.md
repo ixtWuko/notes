@@ -1,4 +1,4 @@
-# git
+# git command
 
 ### 设置
 ```bash
