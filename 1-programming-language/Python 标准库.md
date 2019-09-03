@@ -1,7 +1,13 @@
 # python 标准库 
 
-需要更新，根据使用到的来添加。
-
+- 字符串格式化 string
+- 正则表达式 re
+- 日期与时间 datatime
+- 容器 collections
+- 深拷贝 copy
+- 数学函数 math, cmath, random
+- 函数式编程工具 itertools, functools, operator
+  
 ## os
 
 ```python

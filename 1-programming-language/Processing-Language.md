@@ -29,6 +29,12 @@ void draw() {
     // running this function in every frame
 }
 ```
+
+### 数值
+```cpp
+random()
+map(value, nowMin, nowMax, newMin, newMax)
+```
 ### 数组
 ```cpp
 int[] data; // 自定的对象也可以；二维数组也可以
