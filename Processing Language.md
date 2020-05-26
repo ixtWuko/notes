@@ -1,8 +1,9 @@
 # Processing Language
 
-Processing本身的代码并不重要，主要是利用他的框架编译运行glsl的shader。
+Processing 本身的代码并不重要，主要是利用他的框架编译运行 glsl 的 shader。
 
 ### 程序结构
+
 ```java
 class Type {
 attributes;
@@ -29,12 +30,14 @@ void draw() {
 ```
 
 ### 数值
+
 ```java
 random()
 map(value, nowMin, nowMax, newMin, newMax)
 ```
 
 ### 数组
+
 ```java
 int[] data; // 自定的对象也可以；二维数组也可以
 data = new int[5];
@@ -52,6 +55,7 @@ halve(data); // half value
 ```
 
 ### 向量类型
+
 ```java
 PVector v = new PVertor(x, y);
 v.add(other);
@@ -69,6 +73,7 @@ v.cross(other);
 ```
 
 ### 基本图形
+
 ```java
 // point
 point(x, y);
@@ -137,6 +142,7 @@ camera(width/2, height/2m (height/2) / tan(PI/6),    // eye position
 ```
 
 ### 文本
+
 ```java
 // String Type
 String message = "message";
@@ -176,9 +182,10 @@ splitTokens(string, " &+,.");
 ```
 
 ### 键鼠交互
+
 ```java
 // 键鼠的内置变量
-mouseX, mouseY; 
+mouseX, mouseY;
 pmouseX, pmouseY; // 上一帧的鼠标坐标
 mousePressed; // true or false
 mouseButton; // LEFT or RIGHT
@@ -202,6 +209,7 @@ cursor();
 ```
 
 ### 图像
+
 ```java
 PImage img;
 void setup() {
@@ -237,6 +245,7 @@ updatePixels(); // or img.updatePixels()
 ```
 
 ### 曲线
+
 ```java
 arc(x, y, width, height, startAngle, stopAngle); // x,y is the center, the right is 0 and left is PI
 curve(cpx1, cpy1, x1, y1, x2, y2, cpx2, cpy2); // cp is the control point
@@ -259,6 +268,7 @@ endShape();
 ```
 
 ### PShape
+
 ```java
 PShape shapeName;
 void setup() {
@@ -291,6 +301,7 @@ alien.addChild(body);
 ```
 
 ### PGraphics
+
 ```java
 PGraphics g;
 void setup() {
@@ -325,6 +336,7 @@ woid draw() {
 ```
 
 ### Shader
+
 ```java
 // shader class
 PShader toon;
@@ -366,6 +378,7 @@ beginShape(POLYGON);
 ```
 
 ### 导出
+
 ```java
 import processing.pdf.*;
 
