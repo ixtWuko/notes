@@ -1,21 +1,22 @@
+# Linux-or-WSL-环境搭建
+
 ## 一 系统设置
 
 ### Ubuntu 系统安装
 
 无需大规模计算的任务场景建议使用虚拟机或 WSL。
+
 对于直接安装，这里简要叙述 Ubuntu + Windows 的安装方法，安装顺序为 Windows > Ubuntu，在支持 UEFI 的 PC 上可行。
 
-<!-- more -->
-
-1. 下载 Ubuntu 镜像并制作 U 盘启动盘。在 Windows 下可以使用 Rufus 等软件将镜像刻录到 U 盘，在 Ubuntu 下可使用如下方法：
+1. 下载 Ubuntu 镜像并制作 U 盘安装盘。在 Windows 下可以使用 Rufus 等软件将镜像烧录到 U 盘，在 Ubuntu 下可使用如下方法：
    ```bash
    # find your USB flash memory's path
    $ sudo fdisk -l
    # write the iso file into USB flash memory
    $ sudo dd in=/path/to/image.iso of=/dev/sdx
    ```
-2. 为 Ubuntu 准备磁盘空间。在 Windows 下使用系统自带的分区工具，为 Ubuntu 的安装整理出一整块的空间。
-3. 重启并设置 U 盘为启动项，开始 Ubuntu 系统的安装。建议的分区方式如下，主分区与 home 分区的大小可以根据实际情况调整，主分区中占据空间的是软件，home 分区中占据空间的个人软件和数据。
+2. 为 Ubuntu 准备磁盘空间。在 Windows 下使用系统自带的磁盘管理工具，为 Ubuntu 的安装整理出一整块的磁盘空间。
+3. 重启并设置 U 盘为启动项，开始 Ubuntu 系统的安装。建议的分区方式如下，主分区与 home 分区的大小可以根据实际情况调整，主分区中主要占据空间的是各类软件，home 分区中占据空间的是个人软件和数据。
    ```bash
    /     ext4 150G
    swap  swap #depend on the size of memary
@@ -26,7 +27,7 @@
    /var ext4
    /usr ext4
    ```
-4. 选择不同的系统引导方式，如果希望直接引导 windows，将引导设置到 boot 分区。
+4. 选择不同的系统引导方式，如果希望直接引导 windows，将 Ubuntu 的引导设置到 boot 分区。
 
 注意：删除 Ubuntu 时，不能直接删除分区，直接删除会导致错误的引导项。如果引导设置在 boot 分区，除删除所有的 ubuntu 分区外，还需删除 esp 分区中的 Ubuntu 文件夹，以及使用 bootice 删除 Ubuntu 的启动项。
 
@@ -91,7 +92,7 @@
    ```bash
    # install fish and change default shell to fish
    $ apt install fish
-   # open a web server for fish config
+   # open a web server for fish's config
    $ fish_config
    ```
 
@@ -113,7 +114,7 @@
 
 ### 免密登录
 
-1. 远程服务器的密码登录存在被暴力破解的风险，即使设置复杂的密码，服务器仍会被频繁尝试登录而消耗计算资源。对于远程服务器建立使用私钥登录。
+1. 远程服务器的密码登录存在被暴力破解的风险，即使设置复杂的密码，服务器仍会被频繁尝试登录造成风险。对于远程服务器建立使用私钥登录。
    ```bash
    # upload authorized_key file to the server.
    $ scp local/path/of/authorized_keys root@server_address:/root/.ssh/
@@ -142,7 +143,7 @@
 
 ### 跨大版本升级
 
-1. Ubuntu 的版本优先选择 LTS 即长期支持的版本，系统安装多年后需要更新大版时，可以使用如下命令更新。
+1. Ubuntu 的版本优先选择 LTS 即长期支持的版本，系统安装多年后需要更新大版本时，可以使用如下命令更新。
    ```bash
    $ do-release-upgrade
    # if you want to upgrade to the latest non-LTS develoment release,
@@ -181,3 +182,5 @@
 
 - 在有桌面环境的 Ubuntu 中，SSR 梯子推荐使用 electron-SSR。
 - 在有桌面环境的 Ubuntu 中，数据备份推荐使用 timeshift。
+
+![](https://mmbiz.qpic.cn/mmbiz_jpg/brzTAuwAnFGMmPY7HkdHTSslmfAFUib4pRjaibhic0Q9xodSCmdauSwDttCaqcjG56H27GzHVnTzNPlr6I2VRbwow/0?wx_fmt=jpeg)
