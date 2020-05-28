@@ -37,6 +37,11 @@
   print(dtt.year, dtt.month, dtt.day, dtt.hour, dtt.minute, dtt.second, dtt.microsecond)
   print(dtt.timestamp())
   ```
+- time：提供时间
+  ```python
+  time.time()
+  time.sleep()
+  ```
 - copy：提供深拷贝
   ```python
   copy.deepcopy(iter)
@@ -64,6 +69,10 @@
   # partial(f, args)
   # reduce(f, iter)
   ```
+- logging：日志
+  ```python
+  logging.log(logging.DEBUG, "This is a debug log.")
+  ```
 
 - csv：处理csv文件
   ```python
@@ -78,4 +87,84 @@
     writer.wirteheader()
     writer.writerow()
     writer.writerows()
+  ```
+- json：处理json文件
+  ```python
+  json.dumps() # ->str
+  json.loads() # from string -> dict
+  ```
+
+- multiprocessing：多进程
+  ```python
+  import multiprocessing as mp
+  import os
+
+  # 定义进程的执行内容
+  def target_function(args):
+      pass
+
+  if __name__ == '__main__':
+      # 使用Process类的实例。如果自定义类，则在子类中重载run方法。
+      p = mp.Process(target=target_function, args=args, name=p_name)
+      p.start()
+      p.is_alive() # 进程是否存活
+      p.join() # 阻塞当前进程，直至p执行结束。
+      # p.close()
+
+  # 使用Queue和Pipe，以及Lock
+  def target_function(queue, pipe, lock):
+      value = 'message'
+
+      lock.acquire()
+      try:
+          queue.put(value)
+          pipe.send(value), pipe.close()
+      finally:
+          lock.release()
+
+  if __name__ == '__main__':
+      # 初始化Queue
+      queue = mp.Queue()
+      # 初始化Pipe
+      parent_conn, child_conn = mp.Pipe()
+      # 初始化lock
+      lock = mp.Lock()
+
+      p = mp.Process(target=target_function, args=(queue, child_conn, lock,))
+      p.start()
+
+      # 输出结果
+      print(queue.get())
+      print(parent_conn.recv())
+
+      p.join()
+
+  # 使用共享状态
+  def target_function(v, a):
+      v.value = 10
+      for i in range(len(a)):
+          a[i] = -a[i]
+
+  if __name__ == '__main__':
+      v = mp.Value('d', 0.0)
+      a = mp.Array('i', range(10))
+      p = Process(target=target_function, args=(a,v,))
+      p.start()
+      p.join()
+
+  # 使用进程池
+  def target_function(args):
+      return value
+
+  if __name__ == '__main__':
+      # 创建进程池
+      pool = mp.Pool(processes=10)
+      # 单个进程
+      # 阻塞主进程 apply(func, args, kwds)
+      # 不阻塞主进程 apply_async(func, args, kwds, callback)
+      res = pool.apply_async(func=target_function, args=args)
+      print(res.get(timeout=10))
+      # 多个进程 map, map_async, imap, imap_unordered
+      res = pool.map(func=target_function, iterable=[1,2,3])
+      print(res) # type(res) -> list
   ```
