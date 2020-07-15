@@ -25,6 +25,11 @@
 3. 安装 Clang（可以在 VS 中安装）
 4. 安装 CMake
 
+### Cpp Libraries
+
+- [eigen]()
+- [matplotlib-cpp](https://github.com/lava/matplotlib-cpp)：在 Cpp 中使用 matplotlib 绘图。
+
 ## Python
 
 1. 在应用商店搜索 Python 安装即可。
@@ -37,7 +42,8 @@
 
 - [rich](https://github.com/willmcgugan/rich)：在终端中渲染富文本，以及进度条、markdown、代码高亮、表格等。
 - [gpustat](https://github.com/wookayin/gpustat)：代替 nvidia-smi，查看显卡状态的工具
-- [scalene](https://github.com/emeryberger/scalene)：python的cpu和memary分析工具。
+- [scalene](https://github.com/emeryberger/scalene)：python 的 cpu 和 memary 分析工具。
+- [faker](https://github.com/joke2k/faker)：python 中快速生成假的业务数据，用于进行测试等。
 
 # Windows Software
 
@@ -52,7 +58,7 @@
 | 下载       | IDM / Mortix / uTorrent / 百度网盘                        |
 | 解压缩     | BandZip / 7-Zip                                           |
 | 快捷入口   | PowerToys/ Quicker                                        |
-| 密码管理   | 1Password                                                 |
+| 密码管理   | 1Password / Keepass XC                                    |
 | 图影音查看 | XnView / Potplayer /QQ 音乐 / QuickLook                   |
 | 图影音获取 | Snipaste / FastStone Capture / ScreenToGif / OBS Studio   |
 | 电子书     | Calibre / Knotes / Book Bazaar Reader / Cover             |
@@ -65,6 +71,7 @@
 | U 盘烧录   | Ventoy / Rufus                                            |
 | 系统拯救   | 微 PE / 优启通 / GParted                                  |
 | 其它       | Office Tool Plus / 12306ByPass                            |
+| 字体       | 思源宋体 / 思源黑体 / iosevka                             |
 
 ## 学习学术
 

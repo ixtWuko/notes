@@ -48,7 +48,11 @@ f"{first}, {second} and {third}."
 # 解包
 a, b, *rest = [1,2,3,4,5]
 # 收集参数
-def f(a, *b, **c) # b为元组，c为字典
+def f(a, *b, **c)
+# b为元组，c为字典
+
+# 全局变量
+global x
 # 匿名函数
 lambda x, y: x + y
 
