@@ -8,7 +8,7 @@
 
 对于直接安装，这里简要叙述 Ubuntu + Windows 的安装方法，安装顺序为 Windows > Ubuntu，在支持 UEFI 的 PC 上可行。对于直接安装 Ubuntu 单系统的，也可以参考此方法。
 
-1. 下载 Ubuntu 镜像并制作 U 盘安装盘。推荐使用免费开源的软件 Ventoy，无需烧录即可使用。对于想要烧录 U 盘的，在 Windows 下可以使用 Rufus 等软件将镜像烧录到 U 盘，在 Ubuntu 下可使用如下方法：
+1. 下载 Ubuntu 镜像并制作 U 盘安装盘。可使用免费开源的软件 Ventoy，无需烧录即可，但实际测试可能会发生BUG。对于想要烧录 U 盘，在 Windows 下可以使用 Rufus 等软件将镜像烧录到 U 盘，在 Ubuntu 下可使用如下方法：
    ```bash
    # find your USB flash memory's path
    $ sudo fdisk -l
@@ -61,7 +61,7 @@
    ```bash
    $ sudo apt install language-pack-zh-hans language-pack-zh-hant
    ```
-   为开发方便，在安装 Ubuntu 系统时可以选择英文作为默认语言，之后再安装中文，设置界面等元素使用中文而保持~中文件夹均为英文名。
+   为开发方便，在安装 Ubuntu 系统时可以选择英文作为默认语言，之后再安装中文，设置界面等元素使用中文而保持 `~` 中文件夹均为英文名。
 
 ### 安装 ssh
 
@@ -108,7 +108,7 @@
 
 ### 处理数据盘
 
-1. Ubuntu 无法像 Windows 一样自动挂载所有的数据盘，数据盘挂载方法如下：
+1. Ubuntu 无法像 Windows 一样自动挂载所有的数据盘，尤其是在服务器上使用ubuntu时，常需要自己挂载数据盘。数据盘挂载方法如下：
    ```bash
    # show the device and find the data disk, for example /dev/vdb
    $ fdisk -l
@@ -186,5 +186,8 @@
 
 ## 三 其它软件
 
-- 在有桌面环境的 Ubuntu 中，SSR 梯子推荐使用 electron-SSR。
-- 在有桌面环境的 Ubuntu 中，数据备份推荐使用 timeshift。
+- WPS， FOXIT
+- Team Viewer， VNC Viewer
+- GoldenDict
+- timeshift
+- electron-SSR

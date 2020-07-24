@@ -1,6 +1,6 @@
 # 如何写 makefile
 
-对于源文件较多的项目，直接使用 gcc/clang 进行编译会十分麻烦，makefile 可以解决这一问题。Makefile 记录了项目的编译规则，当使用 make 命令进行项目的编译时，make 命令会使用 makefile 中记录的规则，一步步地编译、链接，生成目标程序；同时已经 make 过的项目再次 make 时，只会重新编译发生修改过的源文件，一定程度上能够节省编译时间。
+对于源文件较多的 c/c++项目，直接在 shell 中使用 gcc/clang 进行编译会十分麻烦，makefile 可以解决这一问题。Makefile 记录了项目的编译规则，当使用 make 命令进行项目的编译时，make 命令会使用 makefile 中记录的规则，一步步地编译、链接，生成目标程序；同时已经 make 过的项目再次 make 时，只会重新编译发生修改过的源文件。这些特性都能够节省编译时间。
 
 makefile 文件包含五种成分：显式规则、隐晦规则、变量定义、文件指示、注释。其中隐晦规则指 make 命令能够自动推导的命令，可以省略规则中的某些元素；文件指示指 makefile 引用其它 makefile，或者指定使用 makefile 哪一部分的规则。一个 makefile 的基本成分如下所示：
 
@@ -54,8 +54,8 @@ clean :           # 没有依赖的规则，make命令不会自动执行，需�
 上述例子为生成执行程序的规则，下面介绍生产静态库(Archive File)的规则：
 
 ```makefile
-somelib(a.o) a.o
-    ar rc somelib a.o
+name_of_lib(a.o) a.o
+    ar rc name_of_lib a.o
 ```
 
 ### 使用变量
@@ -76,7 +76,7 @@ main : $(object)
 - `x ?= $(y)` 只有当 x 不存在时才定义 x；
 - `x += $(y)` 追加。
 
-上述四种运算符中的前两种比较容易迷惑人，下面以一个例子说明其差别：
+上述四种运算符中的前两种比较容易让人产生迷惑，下面以一个例子说明其差别：
 
 ```makefile
 # 使用 =
@@ -175,12 +175,12 @@ $(error "test")
   rm -f a.o
   ```
 
-- 生产静态库的规则也可以自动推导，如 `somelib(a.o b.o)` 将会执行下面的命令：
+- 生产静态库的规则也可以自动推导，如 `name_of_lib(a.o b.o)` 将会执行下面的命令：
 
   ```makefile
   cc -c a.c -o a.o
   cc -c b.c -o b.o
-  ar r somelib.a a.o b.o
+  ar r name_of_lib.a a.o b.o
   rm -f a.o
   rm -f b.o
   ```
