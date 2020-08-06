@@ -16,4 +16,6 @@ res = regex_replace("hello, world", pattern, alter)
 ```
 
 ## IO
-C++ 的 IO 库可以用来处理输入输出、字符串流以及读写文件，对于文件和目录的操作，也有对应的 filesystem 库。
+C++ 的 IO 库内的 iostream, fstream, sstream 可以用来处理输入输出、字符串流以及读写文件，对于文件和目录的操作，也有对应的 filesystem 库。
+
+对于特定的文件格式，使用对应的封装好的第三方库是更加方便的选择。

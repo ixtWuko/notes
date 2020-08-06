@@ -34,6 +34,15 @@
 
 `pair`, `tuple` 都提供来比较的能力，按照先比较第一个元素，相等时再比较第二个元素，……，以这样的顺序进行比较。
 
+`make_pair`, `make_tuple` 用来创建新的 `pair`, `tuple`；而 `tie` 用来打包 `tuple`, 这里打包的是引用。
+```c++
+int a, b, c;
+a = b = c = 0;
+auto t = tie(a, b, c);
+tie(a, b, c) = t;
+```
+上面的例子可以看出，使用 `tuple` 可以很方便地实现函数返回多个值，这种行为与 Python 非常类型，甚至可以使用 `std::ignore` 略过不需要的值。
+
 #### array
 `array.data()` 会返回指向首元素的指针，这样就可以像使用数组一样处理 array 的数据。如：
 ```c++
