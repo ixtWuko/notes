@@ -46,11 +46,12 @@ delete p_str;
 智能指针是C++为了能够更安全地使用动态内存而产生的一种指针，与传统指针不同的地方，智能指针在不使用时会自动释放所指向的对象，避免内存空间浪费。
 
 智能指针使用模板创建：
-- share_ptr 允许多个指针指向同一个对象；
+- auto_ptr (03标准) 遵循RAII，但更推荐下面的。
+- shared_ptr 允许多个指针指向同一个对象；
 - unique_ptr 独占指向的对象；
 - weak_ptr 指向 share_ptr 指向的对象，但是不参与其生存期的计数，因此使用前要检查。
 ```c++
-share_ptr<int> p_int = make_shared<int>(10);  // 无须手动释放
+shared_ptr<int> p_int = make_shared<int>(10);  // 无须手动释放
 ```
 
 ## 类的定义
