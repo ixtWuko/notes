@@ -59,7 +59,14 @@
   Color tmp = red; // Color 作为一种类型使用。
   ```
 
-  枚举类型的本质是整数。
+  枚举可以分为限域枚举和非限域枚举
+  ```c++
+  enum Color {red, green, blur};       // 非限域枚举，实质是整形
+  enum class Color {red, green, blur}; // 限域枚举，没有默认类型
+  // 使用限域枚举时
+  Color::red;
+  ```
+
 
 ### 类型转换
 
@@ -77,3 +84,5 @@
 ```c++
 using Length = unsigned int;
 ```
+
+`typedef` 不支持模板，使用 `using` 比较好。

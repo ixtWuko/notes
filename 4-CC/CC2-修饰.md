@@ -80,3 +80,6 @@ int c_function(int);
 auto iter = vec.begin();
 using Iter = decltype(iter);
 ```
+
+## explicit
+使用 `explicit` 修饰的函数，参数不支持隐式类型转换。
