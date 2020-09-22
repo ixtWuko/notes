@@ -1,4 +1,4 @@
-# C++ 并发 多线程
+# C++ 多线程
 
 ## 线程
 线程使用 thread 建立，建立后立即运行。
@@ -44,7 +44,7 @@ std::this_thread::sleep_for(std::chrono::millisecond(100));
 std::this_thread::sleep_until()
 ```
 
-## 互斥
+## 互斥 mutex
 
 使用 mutex 实现资源访问的互斥。mutex 可以在全局作用域中声明，优势是可以直接在函数或者仿函数中使用；或者在 main 中声明，使用指针传入函数和仿函数。mutex 不允许拷贝和移动，不能使用引用传入。
 我更倾向于使用在 main 中声明 mutex ，看起来会干净一些，注意不要产生悬垂指针。
@@ -72,7 +72,7 @@ guard 的类型
 - unique_lock 不立即锁定，需要使用 lock() 进行锁定，适合与条件量共同使用；
 - scoped_lock 17中加入，可以放入多个互斥量，能够避免死锁。
 
-## 同步
+## 同步 condition_variable
 使用 condition_variable 实现线程的同步。以生产者-消费者模型为例：
 
 ```c++
@@ -94,7 +94,7 @@ lk.unlock();
 consume();
 ```
 
-## 异步线程结果
+## 异步线程结果 future
 
 线程中运行的函数的运行结果，可以通过函数的参数传递出来，使用互斥锁可以实现对共享变量的独占访问。在C++的future头文件中，提供了另外的异步线程间同步结果的方法的方法。
 
