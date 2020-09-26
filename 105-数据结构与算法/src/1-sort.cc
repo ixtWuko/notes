@@ -75,19 +75,22 @@ vector<int> quickSort(vector<int>& nums) {
 void quickSort(vector<int>& nums, int l, int r) {
     if (l >= r) return;
     int key = nums[r];
-    int i = l;
-    int j = r;
-    while (i < j) {
-        if (nums[i] < key) ++i;
-        else {
+    int i = l-1;
+    for (int j = l; j < r; ++j) {
+        if (nums[j] <= key) {
+            ++i;
             swap(nums[i], nums[j]);
-            --j;
         }
     }
-    swap(nums[j], nums[r]);
-    quickSort(nums, l, i-1);
-    quickSort(nums, j+1, r);
+    swap(nums[i+1], nums[r]);
+    quickSort(nums, l, i);
+    quickSort(nums, i+2, r);
 }
+
+
+// =======  堆排序  =======
+
+
 
 int main() {
     vector<int> unordered {3, 4, 1, 2, 5};
@@ -98,4 +101,6 @@ int main() {
     print(r2);
     vector<int> r3 = mergeSort(unordered);
     print(r3);
+    vector<int> r4 = quickSort(unordered);
+    print(r4);
 }
