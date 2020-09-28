@@ -89,18 +89,79 @@ void quickSort(vector<int>& nums, int l, int r) {
 
 
 // =======  堆排序  =======
+template <typename T>
+class Heap {
+private:
+    vector<T> data;
+
+public:
+    Heap() = default;
+    Heap(vector<T>& _input) : data(_input) {
+        for (int i = data.size() / 2; i >=0; --i) {
+            max_heapify(i);
+        }
+    }
+
+    vector<T> sort() {
+        vector<T> res;
+        while (not data.empty()) {
+            max_heapify(0);
+            swap(data[0], data[data.size()-1]);
+            res.push_back(data.back());
+            data.pop_back();
+        }
+        return res;
+    }
+private:
+    inline int parent_idx(int _idx) {
+        return (_idx - 1) / 2;
+    }
+    inline int left_idx(int _idx) {
+        return 2 * _idx + 1;
+    }
+    inline int right_idx(int _idx) {
+        return 2 * _idx + 2;
+    }
+
+    void max_heapify(int _idx) {
+        int largest = _idx;
+        int l = left_idx(_idx);
+        int r = right_idx(_idx);
+        if (l < data.size() and data[l] > data[largest]) largest = l;
+        if (r < data.size() and data[r] > data[largest]) largest = r;
+
+        if (largest != _idx) {
+            swap(data[_idx], data[largest]);
+            max_heapify(largest);
+        }
+    }
+};
+
+// =======  顺序查找  =======
+size_t search(vector<int>& nums, int key) {
+    for (size_t i = 0; i < nums.size(); ++i) {
+        if (nums[i] == key) return i;
+    }
+    return -1;
+}
 
 
+// =======  顺序统计量  =======
+int kthElement(vector<int>& nums, int kth) {
+    return kthElement(nums, 0, nums.size()-1, kth-1);
+}
 
-int main() {
-    vector<int> unordered {3, 4, 1, 2, 5};
-
-    vector<int> r1 = insertSort(unordered);
-    print(r1);
-    vector<int> r2 = bubbleSort(unordered);
-    print(r2);
-    vector<int> r3 = mergeSort(unordered);
-    print(r3);
-    vector<int> r4 = quickSort(unordered);
-    print(r4);
+int kthElement(vector<int>& nums, int l, int r, int kth) {
+    int key = nums[r];
+    int i = l-1;
+    for (int j = l; j < r; ++j) {
+        if (nums[j] <= key) {
+            ++i;
+            swap(nums[i], nums[j]);
+        }
+    }
+    swap(nums[i+1], nums[r]);
+    if (kth == i+1) return nums[i+1];
+    else if (kth < i+1) return kthElement(nums, l, i, kth);
+    else return kthElement(nums, i+2, r, kth);
 }
