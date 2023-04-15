@@ -1,5 +1,6 @@
 .vscode/
 .draft/
+.DS_Store
 
 .aux
 .log
